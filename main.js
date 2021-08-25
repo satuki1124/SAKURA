@@ -1,7 +1,7 @@
 //logoの表示
 $(window).on('load',function(){
-  $("#splash").delay(1500).fadeOut('slow');//ローディング画面を1.5秒（1500ms）待機してからフェードアウト
-  $("#splash_logo").delay(1200).fadeOut('slow');//ロゴを1.2秒（1200ms）待機してからフェードアウト
+  $("#splash").delay(1500).fadeOut('slow');//ローディング画面を1.5秒待機してからフェードアウト
+  $("#splash_logo").delay(1200).fadeOut('slow');//ロゴを1.2秒待機してからフェードアウト
 });
 jQuery(document).ready(function( $ ) {
   // 桜の花
@@ -48,44 +48,41 @@ window.addEventListener('DOMContentLoaded', () => {
 function FixedAnime() {
 	var headerH = $('#header').outerHeight(true);
 	var scroll = $(window).scrollTop();
-	if (scroll >= headerH){//headerの高さ以上になったら
-			$('#header').addClass('fixed');//fixedというクラス名を付与
-		}else{//それ以外は
-			$('#header').removeClass('fixed');//fixedというクラス名を除去
+	if (scroll >= headerH){
+			$('#header').addClass('fixed');
+		}else{
+			$('#header').removeClass('fixed');
 		}
 }
 
-// 画面をスクロールをしたら動かしたい場合の記述
 $(window).scroll(function () {
 	FixedAnime();/* スクロール途中からヘッダーを出現させる関数を呼ぶ*/
 });
 
-// ページが読み込まれたらすぐに動かしたい場合の記述
 $(window).on('load', function () {
-	FixedAnime();/* スクロール途中からヘッダーを出現させる関数を呼ぶ*/
+	FixedAnime();
 });
-// お知らせが画像を動かす
+// 画像を動かす
 function delayScrollAnime() {
-	var time = 0.2;//遅延時間を増やす秒数の値
+	var time = 0.2;
 	var value = time;
 	$('.delayScroll').each(function () {
-		var parent = this;					//親要素を取得
-		var elemPos = $(this).offset().top;//要素の位置まで来たら
-		var scroll = $(window).scrollTop();//スクロール値を取得
-		var windowHeight = $(window).height();//画面の高さを取得
-		var childs = $(this).children();	//子要素を取得
+		var parent = this;				
+		var elemPos = $(this).offset().top;
+		var scroll = $(window).scrollTop();
+		var windowHeight = $(window).height();
+		var childs = $(this).children();
 		
-		if (scroll >= elemPos - windowHeight && !$(parent).hasClass("play")) {//指定領域内にスクロールが入ったらまた親要素にクラスplayがなければ
+		if (scroll >= elemPos - windowHeight && !$(parent).hasClass("play")) {
 			$(childs).each(function () {
 				
-				if (!$(this).hasClass("fadeUp")) {//アニメーションのクラス名が指定されているかどうかをチェック
+				if (!$(this).hasClass("fadeUp")) {
 					
-					$(parent).addClass("play");	//親要素にクラス名playを追加
-					$(this).css("animation-delay", value + "s");//アニメーション遅延のCSS animation-delayを追加し
-					$(this).addClass("fadeUp");//アニメーションのクラス名を追加
-					value = value + time;//delay時間を増加させる
+					$(parent).addClass("play");	
+					$(this).css("animation-delay", value + "s");
+					$(this).addClass("fadeUp");
+					value = value + time;
 					
-					//全ての処理を終わったらplayを外す
 					var index = $(childs).index(this);
 					if((childs.length-1) == index){
 						$(parent).removeClass("play");
@@ -93,34 +90,28 @@ function delayScrollAnime() {
 				}
 			})
 		}else {
-			$(childs).removeClass("fadeUp");//アニメーションのクラス名を削除
-			value = time;//delay初期値の数値に戻す
+			$(childs).removeClass("fadeUp");
+			value = time;
 		}
 	})
 }
 
-// 画面をスクロールをしたら動かしたい場合の記述
 	$(window).scroll(function (){
-		delayScrollAnime();/* アニメーション用の関数を呼ぶ*/
-	});// ここまで画面をスクロールをしたら動かしたい場合の記述
+		delayScrollAnime();
+	});
 
-// 画面が読み込まれたらすぐに動かしたい場合の記述
 	$(window).on('load', function(){
-		delayScrollAnime();/* アニメーション用の関数を呼ぶ*/
-	});// ここまで画面が読み込まれたらすぐに動かしたい場合の記述
+		delayScrollAnime();
+	});
 	function slideAnime(){
-  //====左に動くアニメーションここから===
     $('.leftAnime').each(function(){ 
       var elemPos = $(this).offset().top-50;
       var scroll = $(window).scrollTop();
       var windowHeight = $(window).height();
       if (scroll >= elemPos - windowHeight){
-        //左から右へ表示するクラスを付与
-        //テキスト要素を挟む親要素（左側）とテキスト要素を元位置でアニメーションをおこなう
-        $(this).addClass("slideAnimeLeftRight"); //要素を左枠外にへ移動しCSSアニメーションで左から元の位置に移動
-        $(this).children(".leftAnimeInner").addClass("slideAnimeRightLeft");  //子要素は親要素のアニメーションに影響されないように逆の指定をし元の位置をキープするアニメーションをおこなう
+        $(this).addClass("slideAnimeLeftRight"); 
+        $(this).children(".leftAnimeInner").addClass("slideAnimeRightLeft"); 
       }else{
-        //左から右へ表示するクラスを取り除く
         $(this).removeClass("slideAnimeLeftRight");
         $(this).children(".leftAnimeInner").removeClass("slideAnimeRightLeft");
         
@@ -129,24 +120,22 @@ function delayScrollAnime() {
     
   }
   
-  // 画面をスクロールをしたら動かしたい場合の記述
   $(window).scroll(function (){
-    slideAnime();/* アニメーション用の関数を呼ぶ*/
-  });// ここまで画面をスクロールをしたら動かしたい場合の記述
+    slideAnime();
+  });
 
-  // 画面が読み込まれたらすぐに動かしたい場合の記述
   $(window).on('load', function(){
-    slideAnime();/* アニメーション用の関数を呼ぶ*/
-  });// ここまで画面が読み込まれたらすぐに動かしたい場合の記述
+    slideAnime();
+  });
   $('.slider').slick({
-	autoplay: true,//自動的に動き出すか。初期値はfalse。
-	infinite: true,//スライドをループさせるかどうか。初期値はtrue。
-	speed: 500,//スライドのスピード。初期値は300。
-	slidesToShow: 3,//スライドを画面に3枚見せる
-	slidesToScroll: 1,//1回のスクロールで1枚の写真を移動して見せる
-	prevArrow: '<div class="slick-prev"></div>',//矢印部分PreviewのHTMLを変更
-	nextArrow: '<div class="slick-next"></div>',//矢印部分NextのHTMLを変更
-	centerMode: true,//要素を中央ぞろえにする
-	variableWidth: true,//幅の違う画像の高さを揃えて表示
-	dots: true,//下部ドットナビゲーションの表示
+	autoplay: true,
+	infinite: true,
+	speed: 500,
+	slidesToShow: 3,
+	slidesToScroll: 1,
+	prevArrow: '<div class="slick-prev"></div>',
+	nextArrow: '<div class="slick-next"></div>',
+	centerMode: true,
+	variableWidth: true,
+	dots: true,
 });
