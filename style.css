@@ -56,15 +56,13 @@ html, body {
 	}
   }
   
-  
-  /*========= 上部固定させるためのCSS ===============*/
+  /* ==========================================================================
+  ヘッダー
+  ========================================================================== */
   
   #header {
 	height: 70px;
-	/*高さ指定*/
 	width: 100%;
-	/*横幅指定*/
-	/*以下はレイアウトのためのCSS*/
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -76,19 +74,11 @@ html, body {
 	text-align: center;
 	padding: 20px;
   }
-  
-  
-  /*JSを使いfixedクラスが付与された際の設定*/
-  
   #header.fixed {
 	position: fixed;
-	/*fixedを設定して固定*/
 	z-index: 999;
-	/*最前面へ*/
 	top: 0;
-	/*位置指定*/
 	left: 0;
-	/*位置指定*/
   }
   
   body {
@@ -101,7 +91,7 @@ html, body {
   .gnavi {
 	display: flex;
 	flex-wrap: wrap;
-	/*スマホ表示折り返し用なのでPCのみなら不要*/
+	/*スマホ表示折り返し用*/
 	margin-top: 2%;
 	list-style: none;
   }
@@ -117,13 +107,7 @@ html, body {
 	margin-bottom: 20px;
   }
   
-  
-  /*==================================================
-  ヘッダー
-  ===================================*/
-  
   .gnavi li a {
-	/*線の基点とするためrelativeを指定*/
 	position: relative;
   }
   
@@ -133,30 +117,22 @@ html, body {
   
   .gnavi li a::after {
 	content: '';
-	/*絶対配置で線の位置を決める*/
 	position: absolute;
 	bottom: 0;
 	left: 10%;
-	/*線の形状*/
 	width: 80%;
 	height: 2px;
 	background: #7b8d42;
-	/*アニメーションの指定*/
 	transition: all .3s;
 	transform: scale(0, 1);
-	/*X方向0、Y方向1*/
 	transform-origin: center top;
-	/*上部中央基点*/
   }
-  
-  
-  /*現在地とhoverの設定*/
-  
   .gnavi li.current a::after, .gnavi li a:hover::after {
 	transform: scale(1, 1);
-	/*X方向にスケール拡大*/
   }
-  
+  /* ==========================================================================
+  TOP画像
+  ========================================================================== */
   section {
 	width: 100%;
 	height: 120vh;
@@ -189,10 +165,56 @@ html, body {
 	width: 50%;
 	margin-right: 35%;
   }
-  
-  
-  /* ボタン */
-  
+  .scrolldown2{
+	position:absolute;
+	bottom:10px;
+	left:90%;
+}
+
+/*Scroll*/
+.scrolldown2 span{
+	position: absolute;
+	left:10px;
+	bottom:10px;
+	color: #cfc7c4;
+	font-size: 0.7rem;
+	letter-spacing: 0.05em;
+	-ms-writing-mode: tb-rl;
+    -webkit-writing-mode: vertical-rl;
+    writing-mode: vertical-rl;
+}
+.scrolldown2:before {
+    content: "";
+    position: absolute;
+    bottom:0;
+    left:-4px;
+	width:10px;
+	height:10px;
+	border-radius: 50%;
+	background:#cfc7c4;
+	animation:
+		circlemove 1.6s ease-in-out infinite,
+		cirlemovehide 1.6s ease-out infinite;
+}
+@keyframes circlemove{
+      0%{bottom:45px;}
+     100%{bottom:-5px;}
+ }
+@keyframes cirlemovehide{
+      0%{opacity:0}
+     50%{opacity:1;}
+    80%{opacity:0.9;}
+	100%{opacity:0;}
+ }
+.scrolldown2:after{
+	content:"";
+	position: absolute;
+	bottom:0;
+	left:0;
+	width:2px;
+	height: 50px;
+	background:#cfc7c4;
+}
   .menu, .body-push {
 	-webkit-transition: all .3s ease;
 	-moz-transition: all .3s ease;
@@ -235,10 +257,9 @@ html, body {
   .img.img-responsive {
 	margin-top: 20%;
   }
-  
-  
-  /* 桜を舞うようにする*/
-  
+  /* ==========================================================================
+  桜を降らせる
+  ========================================================================== */
   .cherry-blossom-container {
 	position: relative;
 	height: 50vh;
@@ -283,9 +304,9 @@ html, body {
 	  transform: rotate(3000deg);
 	}
   }
-  
-  
-  /* product */
+  /* ==========================================================================
+  商品説明
+  ========================================================================== */
   
   h2#product {
 	text-align: center;
@@ -344,20 +365,11 @@ html, body {
 	cursor: pointer;
 	margin-top: 20%;
   }
-  
-  
-  /* お知らせ */
-  
   .box {
 	opacity: 0;
 	list-style: none;
   }
-  
-  
-  /*==================================================
-  写真を動かす
-  ===================================*/
-  
+  /* 写真を動かす */
   .fadeUp {
 	animation-name: fadeUpAnime;
 	animation-duration: 0.5s;
@@ -375,10 +387,7 @@ html, body {
 	  transform: translateY(0);
 	}
   }
-  
-  
-  /* ===================================*/
-  
+
   h2#topics {
 	text-align: center;
 	margin-bottom: 20%;
@@ -414,10 +423,9 @@ html, body {
 	margin-left: 5%;
 	position: relative;
   }
-  
-  
-  /* レンズ */
-  
+ /* ==========================================================================
+  レンズ
+  ========================================================================== */
   p.rennzu {
 	font-size: 30px;
 	text-align: center;
@@ -445,18 +453,14 @@ html, body {
   
   .slider .slick-slide {
 	transform: scale(0.8);
-	/*左右の画像のサイズを80%に*/
 	transition: all .5s;
 	/*拡大や透過のアニメーションを0.5秒で行う*/
 	opacity: 0.5;
-	/*透過50%*/
   }
   
   .slider .slick-slide.slick-center {
 	transform: scale(1);
-	/*中央の画像のサイズだけ等倍に*/
 	opacity: 1;
-	/*透過なし*/
   }
   
   ul.slick-dots {
@@ -516,8 +520,9 @@ html, body {
 	background: #cfc7c4;
 	height: 50vh;
   }
- /* カスタマーセンター誘導 */
-  
+ /* ==========================================================================
+  問い合わせ
+  ========================================================================== */
   h2#contact {
 	text-align: center;
 	padding: 10%;
@@ -532,9 +537,9 @@ html, body {
 	height: 30vw;
 	padding: 10%;
   }
-  
-  
-  /* footer-logo */
+  /* ==========================================================================
+  フッター
+  ========================================================================== */
   
   #footer .logo {
 	position: relative;
@@ -566,7 +571,7 @@ html, body {
   }
   
   
-  /* navi */
+  /* フッターナビ */
   
   .navi-row {
 	display: flex;
@@ -605,7 +610,7 @@ html, body {
   }
   
   
-  /* sns-navi */
+  /* sns*/
   
   #footer .sns-navi {
 	margin: 0 0 0 auto;
@@ -634,8 +639,6 @@ html, body {
 	  font-size: 18px;
 	}
   }
-  
-  
   /* sitenavi */
   
   #footer .sitenavi {
@@ -654,16 +657,6 @@ html, body {
   #footer .sitenavi li:first-child {
 	margin-left: 0;
   }
-  
-  @media screen and (max-width: 767px) {
-	#footer .sitenavi {
-	  width: 100%;
-	  text-align: center;
-	  font-size: 12px;
-	}
-  }
-  
-  
   /* copyright */
   
   #footer .copyright {
@@ -1049,13 +1042,17 @@ html, body {
 	  display: block;
 	  padding: 20px 20px;
 	}
-  }
-  
-  @media screen and (max-width: 767px) {
 	#footer .copyright {
 	  width: 100%;
 	  margin: 20px 0 0;
 	  text-align: center;
 	  font-size: 12px;
 	}
+  @media screen and (max-width: 767px) {
+	#footer .sitenavi {
+	  width: 100%;
+	  text-align: center;
+	  font-size: 12px;
+	}
   }
+}
